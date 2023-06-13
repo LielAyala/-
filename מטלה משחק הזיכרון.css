@@ -1,0 +1,43 @@
+body {
+  background-image: url(http://1.bp.blogspot.com/-IHAOS6VvXYw/U4cBEGtyW3I/AAAAAAAAEW4/2QwKKMwHpxs/s1600/Colorful+Cubes+960%C3%97800+HD+Wallpapers.jpg);
+  background-repeat: no-repeat;
+  background-size: cover; 
+  height: 100%;
+}
+.card {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(69, 176, 61);
+    margin: 10px;
+    display: inline-block;
+    text-align: center ;
+    font-size: xx-large;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold';
+    border-radius: 25px;
+  }
+  #game-board {
+    width: 720px; /* 6 עמודות * 120 פיקסלים */
+    /* margin: 10 auto; מרכז הלוח באופן אופקי */
+    height: 500px;
+    margin: 8px auto;
+    background-color:rgba(189, 52, 227, 0.5) ;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  button{
+    position: relative;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold';
+    left: 46%;
+    width: 100px;
+    height: 50px;
+    background-color: red;
+    
+  }
+  p{
+    font-size: xx-large;
+    text-align: center;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold';
+    color: blue;
+
+  }

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>משחק זיכרון</title>
+    <style>
+        .card {
+            width: 100px;
+            height: 100px;
+            background-color: #999;
+            margin: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>משחק זיכרון</h1>
+    <div id="game-board"></div>
+    
+    <script>
+        // מערך התצוגה של הכרטיסים
+        var cards = ["A", "A", "B", "B", "C", "C", "D", "D", "E", "E", "F", "F", "G", "G", "H", "H"];
+        var flippedCards = [];
+
+        // פונקציה לערבוב הכרטיסים
+        function shuffle(array) {
+            var currentIndex = array.length, temporaryValue, randomIndex;
+
+            while (currentIndex !== 0) {
+                randomIndex = Math.floor(Math.random() * currentIndex);
+                currentIndex -= 1;
+
+                temporaryValue = array[currentIndex];
+                array[currentIndex] = array[randomIndex];
+                array[randomIndex] = temporaryValue;
+            }
+
+            return array;
+        }
+
+        // יצירת הלוח
+        function createBoard() {
+            var shuffledCards = shuffle(cards);
+            var gameBoard = document.getElementById("game-board");
+
+            for (var i = 0; i < shuffledCards.length; i++) {
+                var card = document.createElement("div");
+                card.className = "card";
+                card.dataset.value = shuffledCards[i];
+                card.addEventListener("click", flipCard);
+                gameBoard.appendChild(card);
+            }
+        }
+
+        // פונקציה להפיכת הכרטיס
+        function flipCard(event) {
+            var card = event.target;
+            card.innerHTML = card.dataset.value;
+            card.removeEventListener("click", flipCard);
+            flippedCards.push(card);
+
+            if (flippedCards.length === 2) {
+                // בדיקה האם הכרטיסים זהים
+                if (flippedCards[0].dataset.value === flippedCards[1].dataset.value) {
+                    flippedCards[0].style.backgroundColor = "#88CC88";
+                    flippedCards[1].style.backgroundColor = "#88CC88";
+                    flippedCards = [];
+                } else {
+                    // אם הכרטיסים לא זהים, יש זמן קצר לראות את הכרטיסים ולאחר מכן יתהפכו
+                    setTimeout(function() {
+                        flippedCards[0].innerHTML = "";
+                        flippedCards[1].innerHTML = "";
+                        flippedCards[0].addEventListener("click", flipCard);
+                        flippedCards[1].addEventListener("click", flipCard);
+                        flippedCards = [];
+                    }, 1000);
+                }
+            }
+        }
+
+        // יצירת הלוח בעת טעינת הדף
+        window.onload = function() {
+            createBoard();
+        };
+    </script>
+</body>
+</html>
